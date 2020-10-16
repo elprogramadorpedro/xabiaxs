@@ -4,7 +4,7 @@ import fondocadastro from "../imgs/fondocadastro.jpg";
 export const CadastroForm = styled.form`
   display: grid;
   gap: 16px;
-  padding-bottom: 40vh;
+  padding-bottom: 10vh;
 `;
 export const PositionTypo = styled.div`
   display: flex;
