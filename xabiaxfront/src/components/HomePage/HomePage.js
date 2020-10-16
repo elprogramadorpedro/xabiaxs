@@ -1,28 +1,61 @@
-import React from 'react'
-import Typography from '@material-ui/core/Typography';
-import { Button } from '@material-ui/core';
-import { ButtonsContainer } from './styles';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import { Button } from "@material-ui/core";
+import { ButtonsContainer } from "./styles";
+import { Link } from "react-router-dom";
+import {
+  Background,
+  GlobalStyle,
+  Divum,
+  Divdois,
+  Divtres,
+  LogoPosition,
+  MessagePosition,
+} from "./styles";
+import logo from "../imgs/logoun.png";
 
-export function HomePage(){
+import { makeStyles } from "@material-ui/core/styles";
 
-    return(
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(3),
+    },
+  },
+}));
 
-        <div>
-            <Typography variant="h1">Xabia XS </Typography>
-            <ButtonsContainer>
+export function HomePage() {
+  const classes = useStyles();
 
-             <Link to={'/login'}>          
-             <Button variant={'outlined'} color={'secundary'}>Login</Button>
-             </Link>
+  return (
+    <div>
+      <GlobalStyle></GlobalStyle>
 
-             <Link to={'/cadastro'}> 
-             <Button variant={'contained'} color={'primary'}>Cadastro</Button>
-             </Link>
+      <LogoPosition>
+        <img src={logo} alt={logo} width="100px" />
+      </LogoPosition>
 
+      <MessagePosition></MessagePosition>
+      <Background>
+        <Divtres>
+          <Divdois>
+            <ButtonsContainer className={classes.root}>
+              <Link to={"/login"}>
+                <Button variant={"outlined"} color={"secundary"}>
+                  Login
+                </Button>
+              </Link>
+
+              <Link to={"/cadastro"}>
+                <Button variant={"contained"} color={"primary"}>
+                  Cadastro
+                </Button>
+              </Link>
             </ButtonsContainer>
-        </div>
-
-    )
+          </Divdois>
+          <Divum></Divum>
+        </Divtres>
+      </Background>
+    </div>
+  );
 }
-
