@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { TextField, Button, Typography } from "@material-ui/core";
 import {
   CadastroForm,
@@ -14,67 +14,62 @@ import { Link, useHistory } from "react-router-dom";
 import { baseUrl } from "../../constantes";
 
 export function Signup(props) {
+  const [name, setName] = useState("");
+  const [nickname, setNickName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
 
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      history.push("/cadastro");
+    }
+  }, []);
 
-const [name, setName] = useState("");
-const [nickname, setNickName] = useState("");
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const history = useHistory();
+  const hendleName = (event) => {
+    const newName = event.target.value;
+    setName(newName);
+  };
 
-const hendleName = (event) => {
-const newName = event.target.value
-setName (newName)
+  const hendleNickName = (event) => {
+    const newNickName = event.target.value;
+    setNickName(newNickName);
+  };
 
-}
+  const hendleEmail = (event) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+  };
 
-const hendleNickName = (event) =>{
-const newNickName = event.target.value
-setNickName (newNickName)
+  const hendlePassword = (event) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+  };
 
-}
-
-const hendleEmail = (event) =>{
-const newEmail = event.target.value
-setEmail (newEmail)
-
-}
-
-const hendlePassword = (event) =>{
-const newPassword = event.target.value
-setPassword (newPassword)
-
-}
-
-const handleSignup = async (event) =>{
-  event.preventDefaul();
+  const handleSignup = async (event) => {
+    event.preventDefault();
 
     const body = {
       name: name,
       nickname: nickname,
       email: email,
-      password: password
-
-    }
+      password: password,
+    };
     try {
-      const response = await axios.post(`${baseUrl}/user/signup`, body)
+      const response = await axios.post(`${baseUrl}/user/signup`, body);
 
       localStorage.setItem("token", response.data.token);
 
-      history.push("/newimage")
-
+      history.push("/newimage");
     } catch (error) {
       alert("Cadastro falhou, tente novamente");
       console.error(error);
     }
-}
+  };
 
-const handleGoToLogin = (event) =>{
-  history.push("/login");
-}
-
-
-
+  const handleGoToLogin = (event) => {
+    history.push("/login");
+  };
 
   return (
     <div>
@@ -92,7 +87,6 @@ const handleGoToLogin = (event) =>{
             variant="outlined"
             onChange={hendleName}
             value={name}
-            //name={'email'}
           />
           <TextField
             label={"Nickname"}
@@ -100,7 +94,6 @@ const handleGoToLogin = (event) =>{
             variant="outlined"
             onChange={hendleNickName}
             value={nickname}
-            //name={'email'}
           />
           <TextField
             label={"Email"}
@@ -108,7 +101,6 @@ const handleGoToLogin = (event) =>{
             variant="outlined"
             onChange={hendleEmail}
             value={email}
-            //name={'email'}
           />
           <TextField
             label={"Senha"}
@@ -116,16 +108,12 @@ const handleGoToLogin = (event) =>{
             variant="outlined"
             onChange={hendlePassword}
             value={password}
-            //name={'password'}
           />
           <Button variant={"contained"} color={"primary"} type={"submit"}>
-
             Entrar
           </Button>
 
-          <Link onClick={handleGoToLogin}>
-            login
-          </Link>
+          <Link onClick={handleGoToLogin}>login</Link>
         </CadastroForm>
       </Background>
     </div>

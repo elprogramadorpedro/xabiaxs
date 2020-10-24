@@ -5,32 +5,37 @@ export const CadastroForm = styled.form`
   display: grid;
   gap: 16px;
   padding-bottom: 10vh;
+  height: 70vh;
+  width: 30vh;
+  justify-content: center;
+  align-self: center;
+  margin-left: 400px;
 `;
 export const PositionTypo = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const GlobalStyle = createGlobalStyle`
-html, body{
-  margin: 0;
-  width:100vw;
-  height:100vh;
-  font-size:16px;
-  overflow:hidden;
-
-}
+const GaleryImages = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70vw;
+  height: 100vh;
+  border: 1px;
 `;
-const Background = styled.div`
-  background-image: url(${fondocadastro});
-  background-position: left;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+const DivGaleryCadastroForm = styled.div`
+  justify-content: center;
+  display: flex;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0;
 `;
 
-export { GlobalStyle, Background };
+const InformacoesImages = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export { DivGaleryCadastroForm, GaleryImages };
